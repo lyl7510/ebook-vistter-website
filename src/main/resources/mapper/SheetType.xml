@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="SheetType">
+
+    <select id="list" parameterType="map" resultType="map">
+        select st.* ,
+               (select min(s.PAGE) from sheet s  where s.SHEET_TYPE_ID = st.ID) as MINPAGE
+        from sheet_type st where st.BOOK_ID = #{bookId} order by st.ORDER_LIST asc
+    </select>
+
+</mapper>

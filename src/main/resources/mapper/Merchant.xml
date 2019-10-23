@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Merchant">
+
+    <select id="list" resultType="map">
+        select m.* ,
+        (select count(*) from book where MERCHANT_ID = m.ID and STATE = 0 and PUBLIC = 1) as COUNT_BOOKS
+               from merchant m where m.STATE = 0
+        order by m.ORDER_LIST asc
+    </select>
+
+    <select id="load" parameterType="string" resultType="map">
+        select * from merchant where ID = #{_parameter} AND STATE = 0
+    </select>
+
+</mapper>

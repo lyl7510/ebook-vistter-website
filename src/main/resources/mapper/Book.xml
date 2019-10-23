@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Book">
+
+    <select id="list" parameterType="map" resultType="map">
+        select * from book where MERCHANT_ID = #{MERCHANT_ID} and STATE = 0 and PUBLIC = 1
+        order by CREATE_DATE desc
+    </select>
+
+    <select id="load" parameterType="string" resultType="map">
+        select * from book where ID = #{_parameter} and STATE = 0 and PUBLIC = 1
+    </select>
+
+</mapper>
